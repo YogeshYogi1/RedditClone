@@ -35,7 +35,7 @@ class AuthRepository {
 
   FutureEither<UserModel> signInWithGoogle() async {
     try {
-      await _googleSignIn.signOut();
+      // await _googleSignIn.signOut();
       GoogleSignInAccount? googleSignInAccount = await _googleSignIn.signIn();
       String? accessToken =
           (await googleSignInAccount?.authentication)?.accessToken;
@@ -62,7 +62,7 @@ class AuthRepository {
       } else {
         userModel = await getUserdata(userCredential.user!.uid).first;
       }
-      return right(userModel!);
+      return right(userModel);
     } on FirebaseException catch (e) {
       throw e.message!;
     } catch (e) {
